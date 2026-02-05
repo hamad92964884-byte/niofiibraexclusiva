@@ -1,1 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastville Internet - Provedor de Acesso à Internet</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0077ff;
+            --secondary: #00d4ff;
+            --dark: #0a1f3d;
+            --light: #f8f9fa;
+            --success: #00cc88;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Navbar */
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .navbar-brand span {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" opacity="0.05"><path d="M0,300L48,288C96,276,192,252,288,240C384,228,480,228,576,234C672,240,768,252,864,252C960,252,1056,240,1152,234C1248,228,1344,228,1392,228L1440,228L1440,600L1392,600C1344,600,1248,600,1152,600C1056,600,960,600,864,600C768,600,672,600,576,600C480,600,384,600,288,600C192,600,96,600,48,600L0,600Z" fill="%2300d4ff"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Sections */
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .section-title.text-center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            height: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,119,255,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: #f8fafc;
+        }
+        
+        /* Contact Section */
+        .contact-info-card {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Custom Buttons */
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, #0066dd, #00c1e8);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,119,255,0.3);
+        }
+        
+        /* Stats */
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .stats-label {
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-lightning-charge-fill"></i> Fast<span>ville</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicos">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+                <a href="#contato" class="btn btn-primary ms-lg-3 mt-3 mt-lg-0">Contratar Agora</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Internet de Alta Velocidade para <span class="text-warning">Joinville</span></h1>
+                    <p class="hero-subtitle">Conectando você ao futuro com a melhor infraestrutura de internet de Santa Catarina. Velocidade, estabilidade e suporte técnico especializado.</p>
+                    <div class="d-flex flex-column flex-md-row gap-3">
+                        <a href="#contato" class="btn btn-primary btn-lg pulse">Contratar Agora</a>
+                        <a href="#servicos" class="btn btn-outline-light btn-lg">Nossos Serviços</a>
+                    </div>
+                    
+                    <div class="row mt-5 pt-3">
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                                    <i class="bi bi-speedometer2 text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0">+300 Mbps</h4>
+                                    <small>Velocidade Máxima</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-success bg-opacity-10 rounded-circle p-3 me-3">
+                                    <i class="bi bi-activity text-success fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0">99,9%</h4>
+                                    <small>Disponibilidade</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-warning bg-opacity-10 rounded-circle p-3 me-3">
+                                    <i class="bi bi-award text-warning fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0">21+ anos</h4>
+                                    <small>No mercado</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <img src="https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg" alt="Conexão de Internet" class="img-fluid rounded-3 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-5 about-section">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="section-title">Sobre a <span class="text-primary">Fastville</span></h2>
+                    <p class="lead">Há mais de 21 anos conectando pessoas e empresas em Joinville e região com a mais alta tecnologia em comunicação multimídia.</p>
+                    
+                    <p>A <strong>Fastville Provedor de Acesso à Internet LTDA</strong>, fundada em 29 de outubro de 2004, é uma empresa sólida e reconhecida no mercado de telecomunicações de Santa Catarina.</p>
+                    
+                    <p>Com CNPJ 07.072.061/0001-03, estamos sempre em busca das melhores soluções para oferecer internet de alta velocidade, com estabilidade e suporte técnico especializado.</p>
+                    
+                    <p>Nossa missão é garantir que nossos clientes tenham a melhor experiência de conexão, seja para trabalho, estudo ou entretenimento.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Internet Fibra Óptica</span>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Suporte 24/7</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Instalação Rápida</span>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span>Sem Fidelidade</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-4">
+                            <h4 class="card-title mb-4">Informações da Empresa</h4>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <h6>Razão Social</h6>
+                                    <p>Fastville Provedor de Acesso A Internet LTDA</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h6>Nome Fantasia</h6>
+                                    <p>Fastville Internet</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h6>CNPJ</h6>
+                                    <p>07.072.061/0001-03</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h6>Data de Abertura</h6>
+                                    <p>29/10/2004</p>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <h6>Atividade Principal</h6>
+                                    <p>Serviços de comunicação multimídia - SCM</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <h6>Situação Cadastral</h6>
+                                    <p><span class="badge bg-success">Ativa</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title text-center">Nossos <span class="text-primary">Serviços</span></h2>
+                    <p class="lead">Oferecemos soluções completas em conectividade para atender suas necessidades</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h4>Internet Residencial</h4>
+                        <p>Planos de internet de alta velocidade para sua casa, com opções que se adaptam ao seu consumo e orçamento.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i> Fibra óptica</li>
+                            <li><i class="bi bi-check text-success me-2"></i> Wi-Fi de alta performance</li>
+                            <li><i class="bi bi-check text-success me-2"></i> Suporte especializado</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h4>Internet Empresarial</h4>
+                        <p>Soluções corporativas com maior estabilidade, garantia de SLA e suporte prioritário para sua empresa.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i> Link dedicado</li>
+                            <li><i class="bi bi-check text-success me-2"></i> IP fixo</li>
+                            <li><i class="bi bi-check text-success me-2"></i> SLA 99,9%</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-camera-video"></i>
+                        </div>
+                        <h4>Segurança Digital</h4>
+                        <p>Soluções completas em segurança digital, incluindo firewall, antivírus corporativo e monitoramento 24/7.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i> Proteção contra ameaças</li>
+                            <li><i class="bi bi-check text-success me-2"></i> Backup em nuvem</li>
+                            <li><i class="bi bi-check text-success me-2"></i> Monitoramento constante</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title text-center">Entre em <span class="text-primary">Contato</span></h2>
+                    <p class="lead">Estamos prontos para conectar você à melhor internet de Joinville</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="contact-info-card">
+                        <h3 class="mb-4">Fale Conosco</h3>
+                        <p class="mb-4">Tire suas dúvidas, solicite um orçamento ou agende uma visita técnica.</p>
+                        
+                        <div class="mb-4">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <h5>Telefones</h5>
+                            <p>
+                                <a href="tel:4730281932" class="text-white">(47) 3028-1932</a><br>
+                                <a href="tel:4734228608" class="text-white">(47) 3422-8608</a>
+                            </p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <h5>E-mail</h5>
+                            <p>
+                                <a href="mailto:hamad92964884@gmail.com" class="text-white">hamad92964884@gmail.com</a>
+                            </p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <h5>Endereço</h5>
+                            <p>
+                                Rua Copacabana, 335<br>
+                                Floresta, Joinville - SC<br>
+                                CEP: 89211-388
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h5>Horário de Atendimento</h5>
+                            <p>
+                                Segunda a Sexta: 8h às 18h<br>
+                                Sábado: 8h às 12h
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4 p-md-5">
+                            <h4 class="mb-4">Solicite uma Proposta</h4>
+                            <form id="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Nome Completo</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Endereço para Instalação</label>
+                                    <input type="text" class="form-control" id="address" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="service" class="form-label">Tipo de Serviço Desejado</label>
+                                    <select class="form-select" id="service" required>
+                                        <option value="" selected disabled>Selecione uma opção</option>
+                                        <option value="residencial">Internet Residencial</option>
+                                        <option value="empresarial">Internet Empresarial</option>
+                                        <option value="seguranca">Segurança Digital</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Mensagem Adicional</label>
+                                    <textarea class="form-control" id="message" rows="4"></textarea>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">Enviar Solicitação</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="mb-3">
+                        <i class="bi bi-lightning-charge-fill"></i> Fast<span>ville</span>
+                    </h3>
+                    <p>Provedor de internet de alta velocidade em Joinville e região, com mais de 21 anos de experiência no mercado.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-secondary"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-secondary"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-secondary"><i class="bi bi-whatsapp fs-4"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#inicio">Início</a></li>
+                        <li class="mb-2"><a href="#sobre">Sobre Nós</a></li>
+                        <li class="mb-2"><a href="#servicos">Serviços</a></li>
+                        <li class="mb-2"><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Endereço para Correspondência</h5>
+                    <address>
+                        Fastville Internet<br>
+                        Fastville Provedor de Acesso A Internet LTDA<br>
+                        Rua Copacabana, 335<br>
+                        Floresta, Joinville - SC<br>
+                        CEP: 89211-388
+                    </address>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12 text-center copyright">
+                    <p>&copy; 2024 Fastville Internet. Todos os direitos reservados. CNPJ: 07.072.061/0001-03</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Show success message
+            alert(`Obrigado, ${name}! Sua solicitação foi enviada com sucesso. Entraremos em contato em breve no e-mail ${email}.`);
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if(window.scrollY > 100) {
+                navbar.classList.add('shadow');
+            } else {
+                navbar.classList.remove('shadow');
+            }
+        });
+    </script>
+</body>
+</html>
