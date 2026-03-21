@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Área do Cliente | Brasilnets Fibra</title>
+    <title>Agência Virtual | Elektro</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Google Fonts (Inter) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -19,155 +19,169 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0b1a33 0%, #0f2a44 100%);
+            background: linear-gradient(135deg, #1b5e3f 0%, #0e3b26 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem 1rem;
+            position: relative;
         }
 
-        /* Container principal - simula o card central da agência virtual */
+        /* Efeito de overlay sutil igual ao site referência */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path fill="white" d="M20,20 L30,20 L25,30 Z M70,70 L80,70 L75,80 Z M45,45 L55,45 L50,55 Z"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+        }
+
         .main-container {
-            max-width: 1200px;
+            max-width: 1100px;
             width: 100%;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Header com logo e nome */
+        /* Header estilo do site original */
         .brand-header {
             text-align: center;
             margin-bottom: 2rem;
         }
 
-        .brand-icon {
-            background: rgba(0, 180, 216, 0.15);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .logo-area {
             margin-bottom: 1rem;
-            backdrop-filter: blur(4px);
         }
 
-        .brand-icon i {
-            font-size: 3rem;
-            color: #00b4d8;
+        .logo-area i {
+            font-size: 4rem;
+            color: #ffd966;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
         }
 
         .brand-header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             color: white;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
         }
 
-        .brand-header p {
-            color: rgba(255,255,255,0.8);
+        .brand-header .tagline {
+            color: rgba(255,255,255,0.9);
             font-size: 1rem;
-            margin-top: 0.5rem;
+            font-weight: 500;
         }
 
-        /* Card principal - conteúdo */
+        /* Card principal - igual ao layout de agência virtual */
         .content-card {
             background: white;
-            border-radius: 2rem;
-            padding: 2rem 1.8rem;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             margin-bottom: 2rem;
         }
 
         .section-title {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #0b1a33;
+            color: #1e3a2f;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
 
         .section-subtitle {
-            color: #5a6874;
-            border-left: 4px solid #00b4d8;
-            padding-left: 1rem;
-            margin-bottom: 2rem;
-            font-weight: 500;
+            color: #5a6b5e;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            border-bottom: 2px solid #e8f0e8;
+            padding-bottom: 1rem;
         }
 
-        /* Grid de serviços (cards de acesso rápido) */
+        /* Grid de serviços - estilo cards do modelo */
         .service-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            gap: 1.8rem;
             margin-bottom: 2.5rem;
         }
 
         .service-card {
-            background: #f9fbfd;
-            border-radius: 1.5rem;
-            padding: 1.8rem 1.2rem;
+            background: #ffffff;
+            border-radius: 1.2rem;
+            padding: 2rem 1.2rem;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid #e9edf2;
+            border: 1px solid #e0e8e0;
             text-decoration: none;
             display: block;
             color: inherit;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,90,150,0.12);
-            border-color: #00b4d8;
-            background: white;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(27,94,63,0.12);
+            border-color: #2e7d5e;
+            background: #fefef9;
         }
 
         .service-icon {
-            background: #e6f0fa;
-            width: 70px;
-            height: 70px;
+            background: linear-gradient(135deg, #e8f3ed 0%, #d4e8df 100%);
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .service-icon i {
-            font-size: 2.2rem;
-            color: #0056b3;
+            font-size: 2.5rem;
+            color: #1b5e3f;
         }
 
         .service-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: #0b1a33;
+            color: #1e3a2f;
         }
 
         .service-card p {
-            color: #6c7a8a;
-            font-size: 0.9rem;
+            color: #6f7c73;
+            font-size: 0.85rem;
             margin-bottom: 0;
         }
 
         .badge-popular {
-            background: #00b4d8;
-            color: #0b1a33;
+            background: #ffd966;
+            color: #1e3a2f;
             font-size: 0.7rem;
             font-weight: 700;
-            padding: 0.25rem 0.8rem;
+            padding: 0.3rem 1rem;
             border-radius: 30px;
             display: inline-block;
-            margin-top: 0.8rem;
+            margin-top: 1rem;
         }
 
         /* Seção de informações adicionais */
         .info-section {
-            background: #f2f6fc;
-            border-radius: 1.5rem;
+            background: #f6faf7;
+            border-radius: 1.2rem;
             padding: 1.5rem;
             margin-top: 1rem;
+            border: 1px solid #e2ece4;
         }
 
         .info-row {
@@ -188,35 +202,43 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: #1e2a3e;
-            font-size: 0.9rem;
+            color: #2c4a3a;
+            font-size: 0.85rem;
         }
 
         .contact-info i {
-            color: #00b4d8;
-            font-size: 1.2rem;
+            color: #1b5e3f;
+            font-size: 1.1rem;
         }
 
         .cnpj-info {
-            font-size: 0.8rem;
-            color: #4a5b6e;
+            font-size: 0.75rem;
+            color: #5a7668;
         }
 
         /* Footer */
         .footer-note {
             text-align: center;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.8rem;
-            margin-top: 1rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.75rem;
+            margin-top: 1.5rem;
         }
 
         .footer-note a {
-            color: #90e0ef;
+            color: #ffd966;
             text-decoration: none;
         }
 
         .footer-note a:hover {
             text-decoration: underline;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
         }
 
         @media (max-width: 768px) {
@@ -230,7 +252,10 @@
                 gap: 1rem;
             }
             .brand-header h1 {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
+            }
+            .service-card {
+                padding: 1.5rem 1rem;
             }
         }
     </style>
@@ -238,103 +263,107 @@
 <body>
 
 <div class="main-container">
-    <!-- Header (similar ao modelo) -->
+    <!-- Header estilo Elektro -->
     <div class="brand-header">
-        <div class="brand-icon">
-            <i class="bi bi-wifi"></i>
+        <div class="logo-area">
+            <i class="bi bi-lightning-charge-fill"></i>
         </div>
-        <h1>Brasilnets Fibra</h1>
-        <p><i class="bi bi-check-circle-fill" style="font-size: 0.8rem; color: #00b4d8;"></i> Sua conexão com a melhor internet de Joinville</p>
+        <h1>Elektro</h1>
+        <div class="tagline">Energia que conecta, soluções que transformam</div>
     </div>
 
-    <!-- Card principal - área do cliente -->
+    <!-- Card principal - Agência Virtual -->
     <div class="content-card">
-        <h2 class="section-title">Área do Cliente</h2>
-        <div class="section-subtitle">Resolva tudo online, rápido e sem complicação</div>
+        <h2 class="section-title">Agência Virtual</h2>
+        <div class="section-subtitle">Resolva tudo online</div>
 
-        <!-- Grid de serviços (acesso rápido) - inspirado no layout do modelo -->
+        <!-- Grid de serviços -->
         <div class="service-grid">
-            <!-- 2ª via de fatura -->
-            <a href="#" class="service-card">
-                <div class="service-icon">
-                    <i class="bi bi-receipt"></i>
-                </div>
-                <h3>2ª Via da Fatura</h3>
-                <p>Visualize e baixe sua conta em PDF</p>
-                <span class="badge-popular">Mais acessado</span>
-            </a>
-
-            <!-- Pagar com PIX -->
+            <!-- Pagar com PIX - Mais acessado -->
             <a href="#" class="service-card">
                 <div class="service-icon">
                     <i class="bi bi-qr-code"></i>
                 </div>
                 <h3>Pagar com PIX</h3>
-                <p>Pagamento rápido e seguro via PIX</p>
+                <p>Pagamento rápido e seguro</p>
+                <span class="badge-popular">Mais acessado</span>
             </a>
 
-            <!-- Suporte Técnico -->
+            <!-- 2ª Via de Pagamento -->
             <a href="#" class="service-card">
                 <div class="service-icon">
-                    <i class="bi bi-headset"></i>
+                    <i class="bi bi-receipt"></i>
                 </div>
-                <h3>Suporte Técnico</h3>
-                <p>Abra um chamado ou relate falhas</p>
+                <h3>2ª Via de Pagamento</h3>
+                <p>Solicite sua fatura</p>
             </a>
 
-            <!-- Reajuste de Plano / Upgrade -->
-            <a href="#" class="service-card">
-                <div class="service-icon">
-                    <i class="bi bi-speedometer2"></i>
-                </div>
-                <h3>Mude de Plano</h3>
-                <p>Aumente sua velocidade com ofertas exclusivas</p>
-            </a>
-
-            <!-- Troca de titularidade -->
+            <!-- Troca de Titularidade -->
             <a href="#" class="service-card">
                 <div class="service-icon">
                     <i class="bi bi-person-arrows-up"></i>
                 </div>
                 <h3>Troca de Titularidade</h3>
-                <p>Altere o titular da conta rapidamente</p>
+                <p>Altere o titular da conta</p>
             </a>
 
-            <!-- Débito automático -->
+            <!-- Débito Automático -->
             <a href="#" class="service-card">
                 <div class="service-icon">
                     <i class="bi bi-credit-card"></i>
                 </div>
                 <h3>Débito Automático</h3>
-                <p>Não perca prazos, cadastre sua conta</p>
+                <p>Não perca o vencimento</p>
+            </a>
+
+            <!-- Consultar Débitos -->
+            <a href="#" class="service-card">
+                <div class="service-icon">
+                    <i class="bi bi-search"></i>
+                </div>
+                <h3>Consultar Débitos</h3>
+                <p>Verifique sua situação</p>
+            </a>
+
+            <!-- Histórico de Consumo -->
+            <a href="#" class="service-card">
+                <div class="service-icon">
+                    <i class="bi bi-graph-up"></i>
+                </div>
+                <h3>Histórico de Consumo</h3>
+                <p>Acompanhe seu uso de energia</p>
             </a>
         </div>
 
-        <!-- Informações institucionais da empresa (como aparece no modelo original, mas adaptado) -->
+        <!-- Informações institucionais -->
         <div class="info-section">
             <div class="info-row">
                 <div class="contact-info">
-                    <span><i class="bi bi-envelope"></i> brasilnets_atendimento@hotmail.com</span>
-                    <span><i class="bi bi-telephone"></i> (47) 3437-1631</span>
-                    <span><i class="bi bi-geo-alt"></i> Rua Toribio Soares Pereira, 570 - Iririu, Joinville/SC</span>
+                    <span><i class="bi bi-headset"></i> Central de Atendimento: 0800 123 4567</span>
+                    <span><i class="bi bi-envelope"></i> atendimento@elektro.com.br</span>
+                    <span><i class="bi bi-clock"></i> Atendimento 24h</span>
                 </div>
                 <div class="cnpj-info">
-                    <i class="bi bi-building"></i> CNPJ: 10.517.947/0001-28
+                    <i class="bi bi-building"></i> CNPJ: 00.000.000/0001-00
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Rodapé com dados legais e situação da empresa -->
+    <!-- Rodapé -->
     <div class="footer-note">
-        <p>Brasilnets Soluções em Internet e Telefonia LTDA | Fundada em 28/11/2008 - 17 anos de história</p>
-        <p>Atividade: 61.90-6-01 - Provedores de acesso às redes de comunicações | Situação cadastral: <strong class="text-white">Ativa</strong></p>
-        <p><a href="#" class="text-decoration-none">Política de Privacidade</a> | <a href="#" class="text-decoration-none">Termos de Uso</a> | <a href="#" class="text-decoration-none">Agência Virtual 24h</a></p>
-        <p><i class="bi bi-shield-check"></i> Central de atendimento: (47) 3437-1631 | Segunda a Sábado, 8h às 18h</p>
+        <p>Elektro - Energia que impulsiona o futuro</p>
+        <div class="footer-links">
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Agência Virtual</a>
+            <a href="#">Canais de Atendimento</a>
+        </div>
+        <p style="margin-top: 0.8rem;">© 2026 Elektro - Todos os direitos reservados</p>
     </div>
 </div>
 
-<!-- Bootstrap JS (para funcionalidades, mas opcional) -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
